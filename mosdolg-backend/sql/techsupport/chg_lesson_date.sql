@@ -69,7 +69,8 @@ begin
     loop
       if row.stc_id is not null then
         update md.schedule_timesheet_coworkers
-        set lesson_id=lid_row.id
+        set lesson_id=lid_row.id,
+            coworker_id=coalesce(i_coworker, coworker_id)
         where id = row.stc_id
         returning * into stc_row;
         revision_cnt := nextval('public.hibernate_sequence');
@@ -113,7 +114,6 @@ begin
   values ('chg_lesson_date', i_lesson_id, lid_row_old, lid_row);
   ----
   return 'success';
-exception
-  when others then return 'error';
+
 end;
 $$;

@@ -1,0 +1,39 @@
+allprojects {
+    group = 'com.gost-group'
+    version = '0.0.1-SNAPSHOT'
+    task printVersion {
+        doLast {
+            println project.version
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+        options.encoding = "UTF-8"
+    }
+
+    repositories {
+        maven {
+            credentials {
+                username = nexus_user
+                password = nexus_pass
+            }
+            url "http://nexus.gost-group.com/repository/maven-public/"
+        }
+        mavenCentral()
+    }
+
+    sourceSets {
+        main {
+            java { srcDirs = ["src/main/java"] }    // no source dirs for the java compiler
+            resources {
+                srcDirs = ['src/main/resources']
+            }
+        }
+    }
+}

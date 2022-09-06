@@ -1,0 +1,4 @@
+rootProject.name = 'mosdolg-backend'
+include 'longevity'
+include 'esb'
+include 'common'
