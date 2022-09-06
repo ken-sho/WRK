@@ -1,0 +1,279 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.2.RELEASE'
+        swaggerVersion = '2.9.2'
+        slf4jVersion = '1.7.25'
+        log4jVersion = '2.11.1'
+        lombokVersion = '1.18.4'
+        mapstructVersion = '1.2.0.Final'
+        retryVersion = '1.2.4.RELEASE'
+        generatedMapperSourcesDir = "${buildDir}/generated-src/mapstruct/main"
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath 'nu.studer:gradle-jooq-plugin:3.0.2'
+        classpath 'org.jooq:jooq-codegen:3.11.11'
+        classpath 'org.jooq:jooq-meta:3.11.11'
+    }
+}
+
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '2.0'
+    id 'java'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'io.franzbecker.gradle-lombok'
+apply plugin: 'nu.studer.jooq'
+
+bootJar {
+    baseName = 'longevity'
+}
+
+repositories {
+    mavenLocal()
+}
+
+jooq {
+    version = '3.11.11'
+
+    sample(sourceSets.main) {
+        jdbc {
+            driver = 'org.postgresql.Driver'
+            url = 'jdbc:postgresql://localhost:5432/dev'
+            user = 'postgres'
+            password = '123'
+        }
+        generator {
+            name = 'org.jooq.codegen.JavaGenerator'
+            strategy {
+                name = 'org.jooq.codegen.KeepNamesGeneratorStrategy'
+            }
+            database {
+                name = 'org.jooq.meta.postgres.PostgresDatabase'
+                schemata {
+                    schema {
+                        inputSchema = 'md'
+                    }
+                    schema {
+                        inputSchema = 'reference'
+                    }
+                    schema {
+                        inputSchema = 'ar'
+                    }
+                    schema {
+                        inputSchema = 'audit'
+                    }
+                }
+                forcedTypes {
+                    forcedType {
+                        name = 'varchar'
+                        expression = '.*'
+                        types = 'JSONB?'
+                    }
+                    forcedType {
+                        name = 'varchar'
+                        expression = '.*'
+                        types = 'INET'
+                    }
+                }
+                includes = """
+                    ar\\.address_registry |
+                    md\\.place | md\\.candidate | md\\.participant_activity_profile |
+                    md\\.groups | md\\.group_status_registry | md\\.organization | md\\.contract |
+                    md\\.lesson | md\\.schedule_timesheet_coworkers |
+                    md\\.schedule | md\\.week_day_schedule |
+                    md\\.participant | md\\.contact | md\\.personal_document | 
+                    md\\.class_record | md\\.class_record_status_registry |
+                    md\\.communication_history | md\\.coworker |
+                    md\\.status_registry_to_communication_history |
+                    md\\.participant_organization | md\\.contract_status_registry |
+                    md\\.participant_contact | md\\.coworker_contact | md\\.organization_contact |
+                    md\\.lesson_attendance_list | md\\.attendance_sheet | md\\.attendance_data |
+                    md\\.class_quality_control | md\\.contract_property |
+                    md\\.group_contraindication | md\\.group_dress_code | md\\.group_inventory_requirement |
+                    reference\\.activity | reference\\.group_status | reference\\.participant_activity_profile_status |
+                    reference\\.contract_status | reference\\.group_status_reason | reference\\.department |
+                    reference\\.gender | reference\\.occupation | reference\\.document_type |
+                    reference\\.participant_status_log | reference\\.participant_status |
+                    reference\\.communication_reason | reference\\.documents_absence_reason |
+                    reference\\.communication_result | reference\\.communication_result_reason |
+                    reference\\.class_record_status | md\\.territory_organization | ar\\.territory | 
+                    reference\\.contraindication | reference\\.dress_code | reference\\.inventory_requirement |
+                    ar\\.metro_station | md\\.place_metro_stations | reference\\.opf | reference\\.organization_level | 
+                    audit\\.group_inventory_requirement_aud | audit\\.group_dress_code_aud | audit\\.group_contraindication_aud |
+                    audit\\.schedule_timesheet_coworkers_aud | 
+                    audit\\.groups_aud | audit\\.organization_aud | audit\\.contract_aud | audit\\.coworker_aud | 
+                    audit\\.place_aud | audit\\.lesson_aud | audit\\.schedule_aud | audit\\.week_day_schedule_aud |
+                    audit\\.participant_aud | audit\\.participant_contact_aud | md\\.participant_organization_history |
+                    audit\\.participant_activity_profile_aud | audit\\.revision | md\\.territory_organization
+                """
+                includeTables = true
+                includeRoutines = false
+                includePackages = false
+                includeUDTs = false
+                includeSequences = false
+                includePrimaryKeys = false
+                includeUniqueKeys = false
+                includeForeignKeys = false
+                tableValuedFunctions = false
+            }
+            target {
+                packageName = 'com.gost_group.longevity.model.jooq'
+                directory = 'src/main/java'
+            }
+        }
+    }
+}
+
+dependencies {
+    compile project(":common")
+    // versions
+    def iamVersion = "2.0.6-SNAPSHOT"
+
+    // зависимость IDM
+    compile("com.gost-group:iam-connector-md:${iamVersion}") { changing = true }
+    compile("com.gost-group:iam-common-md:${iamVersion}") { changing = true }
+
+    compile "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-data-rest'
+    compile 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-log4j2'
+    compile 'org.springframework.boot:spring-boot-starter-aop'
+    compile 'org.springframework.boot:spring-boot-starter-amqp'
+
+
+    compile group: 'org.springframework.retry', name: 'spring-retry', version: "${retryVersion}"
+
+    compile "org.jooq:jooq:3.13.0"
+    jooqRuntime 'org.postgresql:postgresql:42.2.1'
+
+    compile "org.projectlombok:lombok:${lombokVersion}"
+    compile 'net.jodah:typetools:0.6.1'
+
+    compile "io.springfox:springfox-swagger2:${swaggerVersion}"
+    compile "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: "${log4jVersion}"
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: "${log4jVersion}"
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: "${log4jVersion}"
+    compile group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: "${log4jVersion}"
+
+    compile 'org.flywaydb:flyway-core:4.0.3'
+
+    compile 'org.postgresql:postgresql:42.2.1'
+    compile 'com.mchange:c3p0:0.9.5.2'
+
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'io.gsonfire:gson-fire:1.8.2'
+
+    compile 'com.itextpdf:itextpdf:5.5.9'
+    compile 'com.itextpdf.tool:xmlworker:5.5.9'
+    compile 'com.itextpdf:layout:7.0.2'
+
+    compile('org.jxls:jxls-poi:1.2.0') {
+        exclude group: 'ch.qos.logback', module: 'logback-core'
+    }
+
+    compile 'org.apache.velocity:velocity:1.7'
+    compile 'org.apache.velocity:velocity-tools:2.0'
+
+    compile group: 'cz.jirutka.rsql', name: 'rsql-parser', version: '2.1.0'
+
+    compile group: 'org.jetbrains', name: 'annotations', version: '16.0.3'
+
+    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+
+    compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.4.0'
+
+    compile group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.4.3'
+
+    compile group: 'org.mapstruct', name: 'mapstruct-jdk8', version: mapstructVersion
+
+    compile group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.4.3'
+
+    compile group: 'org.hibernate', name:'hibernate-envers'
+
+    compile 'com.querydsl:querydsl-core'
+    compile 'com.querydsl:querydsl-jpa'
+    compile 'com.querydsl:querydsl-apt'
+
+    //Sentry log4j2 integration
+    compile 'io.sentry:sentry-log4j2:1.7.16'
+
+    // https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
+    compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.2.0'
+
+    compile 'org.springframework.integration:spring-integration-sftp'
+
+    //Hazelcast
+    implementation "com.hazelcast:hazelcast"
+    implementation "com.hazelcast:hazelcast-spring"
+
+    compileOnly group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
+
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    testImplementation group: 'ru.yandex.qatools.embed', name: 'postgresql-embedded', version: '2.9'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.3.1'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.4'
+
+    // Docx4j
+    // https://mvnrepository.com/artifact/org.docx4j/docx4j
+    compile group: 'org.docx4j', name: 'docx4j', version: '6.1.2'
+    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+
+    // https://mvnrepository.com/artifact/fr.opensagres.xdocreport/fr.opensagres.xdocreport.converter.docx.xwpf
+    compile group: 'fr.opensagres.xdocreport', name: 'fr.opensagres.xdocreport.converter.docx.xwpf', version: '2.0.2'
+
+    // https://mvnrepository.com/artifact/org.javatuples/javatuples
+    compile group: 'org.javatuples', name: 'javatuples', version: '1.2'
+
+    // https://mvnrepository.com/artifact/net.lingala.zip4j/zip4j
+    compile group: 'net.lingala.zip4j', name: 'zip4j', version: '2.6.1'
+
+
+}
+
+configurations {
+    all*.exclude module: "spring-boot-starter-logging"
+}
+configurations.all {
+    // Check for updates every build
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+task aclEntityScan(type: JavaExec) {
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java', '../common/src/main/java']
+            }
+        }
+    }
+    main = "com.gost_group.longevity.utils.acl.ScanProjectForAclEntity"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+// removes the task dependency from compileJava to generateSampleJooqSchemaSource
+project.tasks.getByName('compileJava').dependsOn -= 'generateSampleJooqSchemaSource'
+
+//check.dependsOn.remove(test)

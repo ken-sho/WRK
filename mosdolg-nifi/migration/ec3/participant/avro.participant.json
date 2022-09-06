@@ -1,0 +1,103 @@
+{
+  "type": "record",
+  "name": "ec3.participant",
+  "namespace": "ec3",
+  "fields": [
+    {
+      "name": "aid",
+      "type": "long"
+    },
+    {
+      "name": "first_name",
+      "type": "string"
+    },
+    {
+      "name": "second_name",
+      "type": "string"
+    },
+    {
+      "name": "patronymic",
+      "type": "string"
+    },
+    {
+      "name": "date_of_birth",
+      "type": "string"
+    },
+    {
+      "name": "snils",
+      "type": "string"
+    },
+    {
+      "name": "home_phone_number",
+      "type": "string"
+    },
+    {
+      "name": "personal_phone_number",
+      "type": "string"
+    },
+    {
+      "name": "email",
+      "type": "string"
+    },
+    {
+      "name": "gender",
+      "type": "int"
+    },
+    {
+      "name": "skm_series",
+      "type": "string"
+    },
+    {
+      "name": "skm",
+      "type": "string"
+    },
+    {
+      "name": "fct_full_address",
+      "type": "string"
+    },
+    {
+      "name": "reg_full_address",
+      "type": "string"
+    },
+    {
+      "name": "status_id",
+      "type": "int"
+    },
+    {
+      "name": "document_type_id",
+      "type": "int"
+    },
+    {
+      "name": "serial_number",
+      "type": "string"
+    },
+    {
+      "name": "date_from",
+      "type": "string"
+    },
+    {
+      "name": "department",
+      "type": "string"
+    },
+    {
+      "name": "department_code",
+      "type": "string"
+    },
+    {
+      "name": "organization_id",
+      "type": "int"
+    },
+    {
+      "name": "reg_adr_district",
+      "type": "int"
+    },
+    {
+      "name": "fact_adr_district",
+      "type": "int"
+    },
+    {
+      "name": "p_date_create",
+      "type": "string"
+    }
+  ]
+}

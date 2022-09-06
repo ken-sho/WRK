@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "ec3.group_contraindication",
+  "namespace": "ec3",
+  "fields": [
+    {
+      "name": "aid",
+      "type": "long"
+    },
+    {
+      "name": "title",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "ehd.catalog7668",
+  "namespace": "ehd.service",
+  "fields": [
+    {
+      "name": "global_id",
+      "type": "long"
+    },
+    {
+      "name": "system_object_id",
+      "type": "string"
+    },
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "line",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "ehd.dict1997",
+  "namespace": "ehd.service",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "parent_id",
+      "type": "long"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "kod",
+      "type": "string"
+    }
+  ]
+}

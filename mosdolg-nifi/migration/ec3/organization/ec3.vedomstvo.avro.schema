@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "ec3.Vedomstvo",
+  "namespace": "ec3",
+  "fields": [
+    {
+      "name": "aid",
+      "type": "long"
+    },
+    {
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "name": "long_title",
+      "type": "string"
+    },
+     {
+       "name": "level",
+       "type": "int"
+     }
+  ]
+}

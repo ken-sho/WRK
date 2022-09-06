@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "ec3.ref_activity",
+  "namespace": "ec3",
+  "fields": [
+    {
+      "name": "aid",
+      "type": "long"
+    },
+    {
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "name": "parent_id",
+      "type": "long"
+    }
+  ]
+}

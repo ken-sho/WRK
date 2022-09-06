@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rec="http://op.mos.ru/receive_changes">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <rec:ChangeElement>
+            <rec:in><![CDATA[спецификация каталога]]></rec:in>
+            <rec:intype>S</rec:intype>
+        </rec:ChangeElement>
+    </soapenv:Body>
+</soapenv:Envelope>

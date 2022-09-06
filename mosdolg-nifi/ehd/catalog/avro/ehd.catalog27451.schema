@@ -1,0 +1,143 @@
+{
+  "type": "record",
+  "name": "ehd.catalog27451",
+  "namespace": "ehd.service",
+  "fields": [
+    {
+      "name": "global_id",
+      "type": "long"
+    },
+    {
+      "name": "system_object_id",
+      "type": "string"
+    },
+    {
+      "name": "aid",
+      "type": "long"
+    },
+    {
+      "name": "obj_type",
+      "type": "long"
+    },
+    {
+      "name": "address",
+      "type": "string"
+    },
+    {
+      "name": "unom",
+      "type": "long"
+    },
+    {
+      "name": "p1",
+      "type": "long"
+    },
+    {
+      "name": "p3",
+      "type": "long"
+    },
+    {
+      "name": "p4",
+      "type": "long"
+    },
+    {
+      "name": "p5",
+      "type": "long"
+    },
+    {
+      "name": "p6",
+      "type": "long"
+    },
+    {
+      "name": "p7",
+      "type": "long"
+    },
+    {
+      "name": "p90",
+      "type": "long"
+    },
+    {
+      "name": "p91",
+      "type": "long"
+    },
+    {
+      "name": "l1_type",
+      "type": "long"
+    },
+    {
+      "name": "l1_value",
+      "type": "string"
+    },
+    {
+      "name": "l2_type",
+      "type": "long"
+    },
+    {
+      "name": "l2_value",
+      "type": "string"
+    },
+    {
+      "name": "l3_type",
+      "type": "long"
+    },
+    {
+      "name": "l3_value",
+      "type": "string"
+    },
+    {
+      "name": "l4_type",
+      "type": "long"
+    },
+    {
+      "name": "l4_value",
+      "type": "string"
+    },
+    {
+      "name": "l5_type",
+      "type": "long"
+    },
+    {
+      "name": "l5_value",
+      "type": "string"
+    },
+    {
+      "name": "adm_area",
+      "type": "long"
+    },
+    {
+      "name": "district",
+      "type": "long"
+    },
+    {
+      "name": "nreg",
+      "type": "long"
+    },
+    {
+      "name": "dreg",
+      "type": "string"
+    },
+    {
+      "name": "n_fias",
+      "type": "string"
+    },
+    {
+      "name": "d_fias",
+      "type": "string"
+    },
+    {
+      "name": "kladr",
+      "type": "string"
+    },
+    {
+      "name": "adr_type",
+      "type": "long"
+    },
+    {
+      "name": "sostad",
+      "type": "long"
+    },
+    {
+      "name": "status",
+      "type": "long"
+    }
+  ]
+}

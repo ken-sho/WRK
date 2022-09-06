@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "idm.ent_user_lock",
+  "namespace": "idb",
+  "fields": [
+    {
+      "name": "user_id",
+      "type": "long"
+    },
+    {
+      "name": "lock_from",
+      "type": "string"
+    },
+    {
+      "name": "type",
+      "type": "string"
+    }
+  ]
+}

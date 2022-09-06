@@ -1,0 +1,16 @@
+#!/usr/bin/expect -f
+match_max 1000000
+set timeout -1
+#spawn $env(FORTICLIENT_PATH)/forticlientsslvpn_cli --server $env(VPN_HOST) --vpnuser $env(VPN_USER) --pkcs12 $env(VPN_PKCS_PATH) --keepalive
+spawn ssh -L 0.0.0.0:5432:172.24.63.137:5432 root@SMD-DATA01P-172.24.63.137:$env(VPN_USER)@10.89.1.20
+expect "Are you sure you want to continue connecting (yes/no)?"
+send_user -- "yes"
+send_user -- "\r"
+
+expect "$env(VPN_USER)'s password"
+send_user -- $env(VPN_PASS)
+send_user -- "\r"
+
+expect "Account successfully checked out"
+disconnect
+EOF

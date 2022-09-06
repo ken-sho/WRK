@@ -1,0 +1,107 @@
+{
+  "type": "record",
+  "name": "ec3.organization",
+  "namespace": "ec3",
+  "fields": [
+    {
+      "name": "aid",
+      "type": "long"
+    },
+    {
+      "name": "short_title",
+      "type": "string"
+    },
+    {
+      "name": "full_title",
+      "type": "string"
+    },
+    {
+      "name": "full_address",
+      "type": "string"
+    },
+    {
+      "name": "inn",
+      "type": "string"
+    },
+    {
+      "name": "kpp",
+      "type": "string"
+    },
+    {
+      "name": "ogrn",
+      "type": "string"
+    },
+    {
+      "name": "parent_organization_id",
+      "type": "long"
+    },
+    {
+      "name": "representative_full_name",
+      "type": "string"
+    },
+    {
+      "name": "representative_position",
+      "type": "string"
+    },
+    {
+      "name": "website",
+      "type": "string"
+    },
+    {
+      "name": "email",
+      "type": "string"
+    },
+    {
+      "name": "phone",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "name": "unom",
+      "type": "long"
+    },
+    {
+      "name": "opf_id",
+      "type": "int"
+    },
+    {
+      "name": "is_provider",
+      "type": "int"
+    },
+    {
+      "name": "is_css_organization",
+      "type": "int"
+    },
+    {
+      "name": "is_dspp_organization",
+      "type": "int"
+    },
+    {
+      "name": "types_providing_services_id",
+      "type": "int"
+    },
+    {
+      "name": "territory_code",
+      "type": "int"
+    },
+    {
+      "name": "department_id",
+      "type": "int"
+    },
+    {
+        "name": "territory_1_code",
+        "type": "string"
+    },
+     {
+         "name": "territory_2_code",
+         "type": "string"
+     },
+      {
+          "name": "dtszn_code",
+          "type": "int"
+      }
+  ]
+}

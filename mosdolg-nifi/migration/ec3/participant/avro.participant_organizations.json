@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "ec3.participant_organizations",
+  "namespace": "ec3",
+  "fields": [
+    {
+      "name": "participant_aid",
+      "type": "long"
+    },
+    {
+      "name": "organization_aid",
+      "type": "long"
+    },
+    {
+      "name": "date_created",
+      "type": "string"
+    }
+  ]
+}

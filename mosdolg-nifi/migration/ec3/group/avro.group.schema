@@ -1,0 +1,87 @@
+{
+  "type": "record",
+  "name": "ec3.group",
+  "namespace": "ec3",
+  "fields": [
+    {
+      "name": "aid",
+      "type": "long"
+    },
+    {
+      "name": "group_status_id",
+      "type": "long"
+    },
+    {
+      "name": "sc_status_id",
+      "type": "long"
+    },
+    {
+      "name": "coworker_id",
+      "type": "long"
+    },
+    {
+      "name": "need_note",
+      "type": "int"
+    },
+    {
+      "name": "min_count",
+      "type": "int"
+    },
+    {
+      "name": "max_count",
+      "type": "int"
+    },
+    {
+      "name": "plan_start_date",
+      "type": "string"
+    },
+    {
+      "name": "plan_end_date",
+      "type": "string"
+    },
+    {
+      "name": "fact_start_date",
+      "type": "string"
+    },
+    {
+      "name": "fact_end_date",
+      "type": "string"
+    },
+    {
+      "name": "extend",
+      "type": "int"
+    },
+    {
+      "name": "organization_id",
+      "type": "int"
+    },
+     {
+        "name": "activity_id",
+        "type": "int"
+     },
+    {
+       "name": "contract_id",
+       "type": "int"
+    },
+     {
+        "name": "territory_centre_id",
+        "type": "int"
+     },
+     {
+        "name": "code",
+        "type": "string"
+     },
+     {
+        "name": "name",
+        "type": "string"
+     },
+     {
+        "name": "public_date",
+        "type": "string"
+     },
+     {
+        "name": "order_date",
+        "type": "string"
+     }
+  ]
+}

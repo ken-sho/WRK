@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "ec3.group_teachers",
+  "namespace": "ec3",
+  "fields": [
+    {
+      "name": "aid",
+      "type": "long"
+    },
+    {
+      "name": "teacher_aid",
+      "type": "long"
+    },
+    {
+      "name": "participant_aid",
+      "type": "long"
+    }
+  ]
+}

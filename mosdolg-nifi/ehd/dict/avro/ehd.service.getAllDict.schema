@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "ehdDictionary",
+  "namespace": "ehd.service",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "total",
+      "type": "long"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "type": "record",
+  "name": "ec3.contract",
+  "namespace": "ec3",
+  "fields": [
+    {
+      "name": "aid",
+      "type": "long"
+    },
+    {
+      "name": "provider_id",
+      "type": "long"
+    },
+    {
+      "name": "contract_number",
+      "type": "string"
+    },
+    {
+      "name": "organization_id",
+      "type": "long"
+    },
+    {
+      "name": "date_from",
+      "type": "string"
+    },
+    {
+      "name": "date_to",
+      "type": "string"
+    },
+    {
+      "name": "activity_id",
+      "type": "long"
+    },
+    {
+      "name": "full_price",
+      "type": "long"
+    }
+  ]
+}

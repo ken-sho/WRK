@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "ec3.paused_groups",
+  "namespace": "ec3",
+  "fields": [
+    {
+      "name": "group_aid",
+      "type": "long"
+    },
+    {
+      "name": "activity_aid",
+      "type": "long"
+    },
+    {
+      "name": "start_date",
+      "type": "string"
+    }
+  ]
+}

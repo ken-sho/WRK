@@ -1,0 +1,39 @@
+{
+  "type": "record",
+  "name": "idm.ent_users",
+  "namespace": "idb",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "lastname",
+      "type": "string"
+    },
+    {
+      "name": "firstname",
+      "type": "string"
+    },
+    {
+      "name": "middlename",
+      "type": "string"
+    },
+    {
+      "name": "email",
+      "type": "string"
+    },
+    {
+      "name": "phone",
+      "type": "string"
+    },
+    {
+      "name": "creation_date",
+      "type": "string"
+    },
+    {
+      "name": "last_login",
+      "type": "string"
+    }
+  ]
+}

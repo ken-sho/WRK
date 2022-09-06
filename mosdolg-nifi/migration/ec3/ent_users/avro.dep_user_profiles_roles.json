@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "idm.dep_user_profiles_roles",
+  "namespace": "idb",
+  "fields": [
+    {
+      "name": "aid",
+      "type": "long"
+    },
+    {
+      "name": "role_id",
+      "type": "long"
+    }
+  ]
+}
