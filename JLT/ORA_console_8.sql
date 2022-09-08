@@ -1,0 +1,50 @@
+select * from T$CC#CITY_HISTORY h
+where
+h.OPDAT=to_date('01.04.2020','dd.mm.yyyy')
+and h.REENOTE!=7
+
+
+insert into T$CC#CITY_HISTORY (T$CC#CITY_HISTORY.ID, T$CC#CITY_HISTORY.ACC_ID, T$CC#CITY_HISTORY.SRV_ID, T$CC#CITY_HISTORY.SUMM, T$CC#CITY_HISTORY.CREDAT, T$CC#CITY_HISTORY.OPDAT, T$CC#CITY_HISTORY.REENOTE, T$CC#CITY_HISTORY.DATE_NOTE, T$CC#CITY_HISTORY.DATEB, T$CC#CITY_HISTORY.DATEE, T$CC#CITY_HISTORY.SRC, T$CC#CITY_HISTORY.REEAPX, T$CC#CITY_HISTORY.UNO, T$CC#CITY_HISTORY.REENOTE2, T$CC#CITY_HISTORY.NOTEREE, T$CC#CITY_HISTORY.CREATED_REC, T$CC#CITY_HISTORY.ACC_PU)
+select
+			S$CC#CITY_HISTORY_ID.nextval,
+			 ACC_ID, SRV_ID, SUMM, CREDAT, OPDAT, REENOTE, DATE_NOTE, DATEB, DATEE, src, REEAPX, UNO, REENOTE2, NOTEREE, CREATED_REC, ACC_PU
+from T$CC#CITY_HISTORY_OUT h;
+
+select * from T$CC#CITY_HISTORY h
+where
+h.OPDAT>to_date('01.12.2019','dd.mm.yyyy')
+and h.REENOTE!=7
+and h.REENOTE2='перебросы'
+
+
+
+delete from T$CC#CITY_HISTORY h
+where
+h.OPDAT>to_date('01.12.2019','dd.mm.yyyy')
+and h.REENOTE!=7
+
+
+619020521///
+
+
+select *
+from T$CC#CITY_HISTORY h
+where
+h.OPDAT>=to_date('01.01.2020','dd.mm.yyyy')
+and h.REENOTE!=7
+order by id
+
+
+select *
+from T$CC#CITY_HISTORY h
+where h.ACC_ID=698746 order by id
+
+select *
+from T$CC#CITY_HISTORY_CLIENT h
+where h.ACC_ID=698746 order by id
+
+
+select saldo.GET_CITY_INSALDO_CLIENT(698746,to_date('01.09.2019','dd.mm.yyyy'),1) from dual;
+select saldo.GET_CITY_INSALDO_CLIENT(698746,sysdate,1) from dual;
+
+698746
