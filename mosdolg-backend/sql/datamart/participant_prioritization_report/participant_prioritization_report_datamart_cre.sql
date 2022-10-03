@@ -1,3 +1,4 @@
+drop function if exists rep.participant_prioritization_report_datamart_cre;
 create function rep.participant_prioritization_report_datamart_cre() returns text
   security definer
   language plpgsql
@@ -25,7 +26,11 @@ begin
     init_enrollment_tcso text
   );
   ---создаём индексы витрины
-
+  alter table rep.participant_prioritization_datamart add constraint participant_prioritization_datamart_pk primary key (id);
+  create index participant_prioritization_datamart_id_index on rep.participant_prioritization_datamart (id);
+  create index participant_prioritization_datamart_participant_id_index on rep.participant_prioritization_datamart (participant_id);
+  create index participant_prioritization_datamart_group_id_index on rep.participant_prioritization_datamart (group_id);
+  create index participant_prioritization_datamart_enrollment_date_index on rep.participant_prioritization_datamart (enrollment_date);
   ----
   truncate table rep.participant_prioritization_datamart;
   insert into rep.participant_prioritization_datamart(participant_id, fio, create_date,
@@ -113,6 +118,6 @@ begin
   ----
   ----
   return 'success';
-  --exception when others then return 'error';
+  exception when others then return 'error';
 end;
 $$;

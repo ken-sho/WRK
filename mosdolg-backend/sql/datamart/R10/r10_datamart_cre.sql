@@ -1,4 +1,5 @@
-create or replace function rep.r10_datamart_cre() returns text
+drop function if exists rep.r10_datamart_cre;
+create function rep.r10_datamart_cre() returns text
   security definer
   language plpgsql
 as $$
@@ -153,11 +154,7 @@ from md.participant p
        left join PSL on p.id = PSL.participant_id
        left join ACT on p.id = ACT.participant_id
        left join reg_cr on ACT.cr_id = reg_cr.cr_id
-  --limit 1
   ;
-  ----
-  --execute 'vacuum analyse rep.r10_datamart';
-  ----
 	return 'success';
   exception when others then return 'error';
 END;

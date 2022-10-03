@@ -184,10 +184,7 @@ begin
                r.participant_id in (select * from unnest(participantlst)) end)
       and coalesce(r.i_isonline, '') =
           (case when upper(sign_online) = '' then coalesce(r.i_isonline, '') else upper(sign_online) end)
-      
-      --and p.id in (2945726, 514579)*/
     order by r.participant_id
     limit limit_param offset offset_param;
-
 end
 $$;

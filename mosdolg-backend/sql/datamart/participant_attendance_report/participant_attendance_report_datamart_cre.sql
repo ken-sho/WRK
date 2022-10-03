@@ -124,7 +124,6 @@ begin
          t2.id                                                                 as i_p_area_ids,
          ar.district                                                           as i_p_tcso_s_ch_ids_1,
          g.territory_centre_id,
-         --torg.territory_id as i_p_tcso_s_ch_ids_2,
          o3.id                                                                 as i_p_tcso_coordinators_ids,
          o.id                                                                  as i_p_tcso_creator_ids,
          o2.id                                                                 as i_p_provider_ids
@@ -148,13 +147,8 @@ begin
          left join reference.group_status gs on gs.id = gsr.status_id
          left join md.coworker c2 on c2.id = g.coworker_id
          left join ar.address_registry ar on coalesce(p.fact_address, p.registration_address) = ar.id
-      --left join md.territory_organization torg on g.territory_centre_id = torg.organization_id
          left join teachers on teachers.group_id = g.id
-  --limit 1
   ;
-  ----
-  --execute 'vacuum analyse rep.participant_attendance_datamart';
-  ----
   return 'success';
 exception
   when others then return 'error';

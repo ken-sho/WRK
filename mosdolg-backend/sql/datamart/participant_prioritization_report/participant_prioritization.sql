@@ -1,10 +1,11 @@
+drop function if exists rep.participant_prioritization;
 create function rep.participant_prioritization(
   tcso   bigint[] default array []::integer[], areas bigint[] default array []::integer[],
   p_date date default current_date)
   returns TABLE (
     id                   bigint,
     fio                  text,
-    create_date          timestamp without time zone,
+    create_date          text,
     status               character varying,
     group_code           text,
     supplier_dept        text,
@@ -13,7 +14,7 @@ create function rep.participant_prioritization(
     activity_title_l2    text,
     activity_title_l3    text,
     group_status         character varying,
-    enrollment_date      timestamp without time zone,
+    enrollment_date      text,
     cr_last_status       character varying,
     creator_tcso         text,
     area_tcso            text,
@@ -60,7 +61,7 @@ begin
            ---ФИО участника
            ppd.fio,
            ---Дата и время создания личного дела
-           ppd.create_date,
+           to_char(ppd.create_date,'dd.mm.yyyy HH24:MI'),
            ---Статус личного дела
            ps.title,
            ---Код группы
@@ -78,7 +79,7 @@ begin
            ---Статус группы
            gs.title,
            ---Дата и время  зачисления
-           ppd.enrollment_date,
+           to_char(ppd.enrollment_date,'dd.mm.yyyy HH24:MI'),
            ---Статус записи участника в группу
            crs.title,
            ---Краткое наименование ТЦСО координации группы (учета уникальных участников)
