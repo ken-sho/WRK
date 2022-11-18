@@ -71,7 +71,8 @@ begin
     cr_date as (---(6)3.1.1/3.1.2.1
       select cr_date_L0.class_record_id,
              (case
-                when crsr2.end_date isnull then cr_date_L0.arr_sd1[2]
+                when crsr2.end_date isnull and cr_date_L0.arr_sd1[2] is not null  then cr_date_L0.arr_sd1[2]
+                when array_length(cr_date_L0.arr_sd1, 1) = 1 then cr_date_L0.arr_sd2[1]
                 else crsr2.end_date
                end)::date as crsr_start_date
       from cr_date_L0

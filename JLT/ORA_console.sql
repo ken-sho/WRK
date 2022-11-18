@@ -21,7 +21,7 @@ select
 from T$CC#CITY_HISTORY h,V$CC#SERVICES s
 where
 h.REENOTE=7
-and trunc(h.OPDAT,'mm')=to_date('01.08.2022','dd/mm/yyyy')
+and trunc(h.OPDAT,'mm')=to_date('01.10.2022','dd/mm/yyyy')
   --and trunc(h.OPDAT)=to_date('28.05.2020','dd/mm/yyyy')
 and h.SRV_ID=s.TAG
 --and h.ACC_PU='639507321'

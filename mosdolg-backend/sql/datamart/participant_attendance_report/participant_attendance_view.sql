@@ -245,7 +245,7 @@ begin
                                                                                  and o5.parent_organization_id = 1095
                                                                                  and o5.id in (select unnest(p_uszn_ids)) /*PARAM УСЗН куратор ТЦСО, координирующих группы*/
                                            ))
-               or pad.i_p_tcso_coordinators_ids in (select o4.id
+               and pad.i_p_tcso_coordinators_ids in (select o4.id
                                                     from md.organization o4
                                                     where o4.parent_organization_id in (select o5.id
                                                                                         from md.organization o5
