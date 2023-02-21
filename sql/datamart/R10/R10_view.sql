@@ -66,7 +66,7 @@ begin
            --creatortcso
            o.short_title::text                                                                                     "Краткое наименование ТЦСО создания ЛД",
            --creationdate
-           to_char(r.creationdate, 'dd.mm.yyyy HH24:MI')                                                        as "Дата создания ЛД",
+           to_char(r.creationdate, 'dd.mm.yyyy HH24:MI:SS')                                                     as "Дата создания ЛД",
            --participantstatus
            r.participantstatus                                                                                  as "Статус ЛД",
            --rejectionreason
@@ -95,11 +95,11 @@ begin
            --classrecordstatus
            crs.title::text                                                                                      as "Статус записи в группу",
            --enrollmentdate
-           to_char(r.enrollmentdate, 'dd.mm.yyyy HH24:MI')                                                      as "Дата зачисления",
+           to_char(r.enrollmentdate, 'dd.mm.yyyy HH24:MI:SS')                                                   as "Дата зачисления",
            --stopreason
            r.stopreason                                                                                         as "Причина приостановки",
            --leavingdate
-           to_char(r.leavingdate, 'dd.mm.yyyy HH24:MI')                                                         as "Дата отчисления",
+           to_char(r.leavingdate, 'dd.mm.yyyy HH24:MI:SS')                                                      as "Дата отчисления",
            --leavingreason
            r.leavingreason                                                                                      as "Причина отчисления",
            --isonline
@@ -178,13 +178,13 @@ begin
              when arr_act_1[1] isnull then true
              else
                r.i_arr_act_3 in (select * from unnest(arr_act_1)) end)
-      and (case
-             when participantlst[1] isnull then true
-             else
-               r.participant_id in (select * from unnest(participantlst)) end)
+      
       and coalesce(r.i_isonline, '') =
           (case when upper(sign_online) = '' then coalesce(r.i_isonline, '') else upper(sign_online) end)
+      
+      --and p.id in (2945726, 514579)*/
     order by r.participant_id
     limit limit_param offset offset_param;
+
 end
 $$;

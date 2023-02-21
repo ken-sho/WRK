@@ -43,6 +43,7 @@ create table if not exists rep.r10_datamart (
   ---создаём индексы витрины
 create index if not exists r10_datamart_participant_id_index on rep.r10_datamart (participant_id);
   ----
+truncate table rep.r10_datamart;
 insert into rep.r10_datamart
 with
   PSL as (select distinct
@@ -102,7 +103,7 @@ with
           group by pap.participant_id, act1.parent_id,
                    act1.id, act2.id, act2.parent_id, act3.id, pap.date_from, cr.group_id,
                    gsr.status_id, crsr.class_record_status_id,
-                   o2.id, cr.id, pap.activity_id, o1.id),
+                   o2.id, cr.id, pap.activity_id, pap.id,o1.id),
   reg_cr as (select cr.id                                                                            as cr_id,
                     min(crsr.start_date)                                                             as crsr_dateb,
                     max(case when crsr.class_record_status_id = 2 then crsrr.title end)              as crsr_reason_stop,
@@ -152,10 +153,14 @@ from md.participant p
        left join ar.territory tr2 on ar2.district = tr2.id
        left join md.organization o on p.organization_id = o.id
        left join PSL on p.id = PSL.participant_id
-       left join ACT on p.id = ACT.participant_id
+       join ACT on p.id = ACT.participant_id
        left join reg_cr on ACT.cr_id = reg_cr.cr_id
+  --limit 1
   ;
+  ----
+  --execute 'vacuum analyse rep.r10_datamart';
+  ----
 	return 'success';
-  exception when others then return 'error';
+  --exception when others then return 'error';
 END;
 $$;
