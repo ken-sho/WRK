@@ -29,7 +29,7 @@ with L0 as (
   where tdr.doc_id = :ree
     and tdr.status >= 0
 )select
-  '2022-10-01'::date,'2022-10-01'::date,'Расход','Оплата','Основное','приставы',L2.note,p.acc_pu,p.acc_pu,s.note,
+  '2022-11-01'::date,'2022-11-01'::date,'Расход','Оплата','Основное','банк',L2.note,p.acc_pu,p.acc_pu,s.note,
    (L2.summ::numeric),L2.acc_id,L2.srv_id::integer
 ---------
 --L2.acc_id,L2.srv_id::integer,(L2.summ::numeric*-1),L2.date_op,to_date(L2.opdate,'dd.mm.yyyy'),6,
@@ -45,8 +45,8 @@ L2.summ is not null;
 
 
 /*
-1516,24,21,2022-10-11 08:58:38.014541,9,Банк,,26,0
-1515,25,21,2022-10-11 08:58:38.014541,9,Приставы,,26,0
+1518,25,21,2022-11-10 21:08:40.903199,9,Приставы
+1517,24,21,2022-11-10 21:08:40.903199,9,Банк
 
 
 

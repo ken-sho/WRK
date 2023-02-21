@@ -97,7 +97,6 @@ begin
         select cr_date_L0.class_record_id,
                (case
                   when crsr2.end_date isnull then cr_date_L0.arr_sd1[2]
-                  when array_length(cr_date_L0.arr_sd1, 1) = 1 then cr_date_L0.arr_sd2[1]
                   else crsr2.end_date
                  end)::date as crsr_start_date
         from cr_date_L0
@@ -314,7 +313,7 @@ begin
                                                                               and o5.parent_organization_id = 1095
                                                                               and o5.id in (select unnest(p_uszn_ids)) /*PARAM УСЗН куратор ТЦСО, координирующих группы*/
                                         ))
-               or o3.id in (select o4.id
+               and o3.id in (select o4.id
                              from md.organization o4
                              where o4.parent_organization_id in (select o5.id
                                                                  from md.organization o5

@@ -1,8 +1,0 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rec="http://op.mos.ru/receive_changes">
-    <soapenv:Header/>
-    <soapenv:Body>
-        <rec:ResponseElement>
-            <rec:out>FAIL! ${MESSAGE}></rec:out>
-        </rec:ResponseElement>
-    </soapenv:Body>
-</soapenv:Envelope>
