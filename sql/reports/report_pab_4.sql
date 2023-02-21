@@ -48,7 +48,9 @@ create function public.report_pab_4()
     "id 1-го уровня"                    bigint,
     "id 2-го уровня"                    bigint,
     "id 3-го уровня"                    bigint,
-    "Код площадки"                      bigint
+    "Код площадки"                      bigint,
+    "ID соглашения"                     bigint,
+    "ID организации"                    bigint
   )
   language plpgsql
 as $$
@@ -65,8 +67,7 @@ begin
                act3.title as focus
         from reference.activity act1
                left join reference.activity act2 on (act2.id = act1.parent_id)
-               left join reference.activity act3 on (act3.id = act2.parent_id)
-      ),
+               left join reference.activity act3 on (act3.id = act2.parent_id)),
       G1 as ( -- Организация/Департамент/Контракт
         select gr1.id                  group_id,
                org.id                  orgid,
@@ -78,8 +79,7 @@ begin
         from md.groups gr1
                left join md.contract cont on (cont.id = gr1.contract_id)
                left join md.organization org on (org.id = gr1.organization_id)
-               left join reference.department dep on (dep.id = org.department_id)
-      ),
+               left join reference.department dep on (dep.id = org.department_id)),
       G2 as ( -- Адрес оказания услуг/Преподователь/Расписание/Площадка
         select l.group_id,
                ar.address                                                                                 as service_addr,
@@ -100,29 +100,25 @@ begin
                left join ar.territory tr2 on (ar.district = tr2.id)
                left join md.schedule_timesheet_coworkers stc on l.id = stc.lesson_id
                left join md.coworker cw on stc.coworker_id = cw.id
-        group by l.group_id, ar.address, ar.unom, tr1.title, tr2.title, p.id
-      ),
+        group by l.group_id, ar.address, ar.unom, tr1.title, tr2.title, p.id),
       G3 as ( -- Форма одежды
         select gdс.group_id,
                string_agg(dc.title, ', ')::varchar as dress_code
         from md.group_dress_code gdс
                left join reference.dress_code dc on (dc.id = gdс.dress_code_id)
-        group by gdс.group_id
-      ),
+        group by gdс.group_id),
       G4 as ( -- Инвентарь
         select gir.group_id,
                string_agg(ir.title, ', ') as inventory
         from md.group_inventory_requirement gir
                left join reference.inventory_requirement ir on (ir.id = gir.inventory_requirement_id)
-        group by gir.group_id
-      ),
+        group by gir.group_id),
       G4_1 as ( -- Противопоказания
         select gc.group_id,
                string_agg(c.title, ', ') as contraindications
         from md.group_contraindication gc
                left join reference.contraindication c on gc.contraindication_id = c.id
-        group by gc.group_id
-      ),
+        group by gc.group_id),
       G5 as ( -- Адрес ЦСО/Район
         select gr.id                                  group_id,
                org.id                                 orgid_cso,
@@ -137,8 +133,7 @@ begin
                left join ar.address_registry ar on (ar.id = org.physical_address)
             --left join ar.territory tr3 on (tr3.id = ar2.district)
                left join md.organization_contact oc on (oc.owner_id = org.id and oc.contact_type_id = 1)
-        group by gr.id, org.id, org.short_title, ar.address
-      ),
+        group by gr.id, org.id, org.short_title, ar.address),
       G6 as ( -- Расписание групп
         select gr.id                                                     group_id,
                string_agg(case
@@ -181,8 +176,7 @@ begin
         from md.groups gr
                left join md.schedule sh on (sh.group_id = gr.id)
                left join md.week_day_schedule wds on (wds.schedule_id = sh.id)
-        group by gr.id
-      ),
+        group by gr.id),
       G7_0 as ( -- последний статус записи в группу
         select crsr.class_record_id,
                array_agg(crsr.class_record_status_id order by crsr.id desc)                         status_arr,
@@ -190,25 +184,22 @@ begin
         from md.class_record_status_registry crsr
         where crsr.end_date is null
           and crsr.start_date is not null
-        group by crsr.class_record_id
-      ),
-      G7 as (
-        select cr.group_id,
-               --count(cr.id) as group_count
-               sum(case
-                     when coalesce((status_json ->> 'null')::bigint, status_arr[1]) in (1, 3, 6) then 1
-                     else 0 end) as group_count,
-               sum(case
-                     when coalesce((status_json ->> 'null')::bigint, status_arr[1]) in (1, 2, 3, 6, 7) then 1
-                     else 0 end) as group_vacant,
-               sum(case
-                     when coalesce((status_json ->> 'null')::bigint, status_arr[1]) in (2) then 1
-                     else 0 end) as group_pause
-        from md.class_record cr
-               left join G7_0 on (cr.id = G7_0.class_record_id)
-        where coalesce((status_json ->> 'null')::bigint, status_arr[1]) in (1, 2, 3, 6, 7)
-        group by cr.group_id
-      ),
+        group by crsr.class_record_id),
+      G7 as (select cr.group_id,
+                    --count(cr.id) as group_count
+                    sum(case
+                          when coalesce((status_json ->> 'null')::bigint, status_arr[1]) in (1, 3, 6) then 1
+                          else 0 end) as group_count,
+                    sum(case
+                          when coalesce((status_json ->> 'null')::bigint, status_arr[1]) in (1, 2, 3, 6, 7) then 1
+                          else 0 end) as group_vacant,
+                    sum(case
+                          when coalesce((status_json ->> 'null')::bigint, status_arr[1]) in (2) then 1
+                          else 0 end) as group_pause
+             from md.class_record cr
+                    left join G7_0 on (cr.id = G7_0.class_record_id)
+             where coalesce((status_json ->> 'null')::bigint, status_arr[1]) in (1, 2, 3, 6, 7)
+             group by cr.group_id),
       G8 as ( --Режим работы ЦСО
         select string_agg(case
                             when rs.day_of_week = '0' then 'Пн.'
@@ -222,8 +213,7 @@ begin
                           rs.time_from || '-' || rs.time_to, ',' order by rs.day_of_week) as operating_mode_cso,
                rs.organization_id
         from reference.recurrence_schedule rs
-        group by rs.organization_id
-      ),
+        group by rs.organization_id),
       G9 as ( -- последний статус группы
         select gsr.group_id,
                gsr.status_id as last_status,
@@ -231,14 +221,12 @@ begin
         from md.group_status_registry gsr
                left join reference.group_status_reason grst on gsr.reason_id = grst.id
         where gsr.is_expectation = false
-          and gsr.end_date isnull
-      ),
+          and gsr.end_date isnull),
       G10 as ( -- Фактическая дата начала
         select l.group_id,
                min(l.lesson_date) as fact_start_date
         from md.lesson l
-        group by l.group_id
-      )
+        group by l.group_id)
     select g.id                                                                     as group_id,--    "Уникальный номер в КИС МД"
            concat('G-', lpad(g.id::varchar, 8, '0'))::varchar                       as group_num,--"Код группы в КИС МД"
            G0.direction,--"Направление"
@@ -286,7 +274,9 @@ begin
            G0.activity_id1, --"id 1-го уровня"
            G0.activity_id2, --"id 2-го уровня"
            G0.activity_id3, --"id 3-го уровня"
-           G2.place_id--"Код площадки"
+           G2.place_id,--"Код площадки"
+           g.contract_id,--ID соглашения
+           g.organization_id--ID организации
     from md.groups g
            left join G0 on (G0.activity_id3 = g.activity_id)
            left join G1 on (G1.group_id = g.id)
