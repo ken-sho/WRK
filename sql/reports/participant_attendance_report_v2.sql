@@ -42,9 +42,24 @@ as $$
 declare
   i_p_date_from date;
   i_p_date_to   date;
+  uszn_arr bigint[];
 begin
   i_p_date_from := coalesce(p_date_from, '2019-01-01'::date);
   i_p_date_to := coalesce(p_date_to, '2099-01-01'::date);
+  ----p_uszn_ids предвыбор ID
+  select array_agg(t.id)
+  into uszn_arr
+  from (select o4.id
+        from md.organization o4
+        where
+          /* grand child */
+            o4.parent_organization_id in
+            ((select o5.id from md.organization o5 where (parent_organization_id in (select unnest(p_uszn_ids)))))
+           or
+          /* direct child */
+            o4.id in
+            (select o6.id from md.organization o6 where (parent_organization_id in (select unnest(p_uszn_ids))))) t;
+  ----
   return query
     with
       pc_tel as (select pc.owner_id,
@@ -97,7 +112,6 @@ begin
         select cr_date_L0.class_record_id,
                (case
                   when crsr2.end_date isnull then cr_date_L0.arr_sd1[2]
-                  when array_length(cr_date_L0.arr_sd1, 1) = 1 then cr_date_L0.arr_sd2[1]
                   else crsr2.end_date
                  end)::date as crsr_start_date
         from cr_date_L0
@@ -306,22 +320,7 @@ begin
       end)
       and (case
              when p_uszn_ids[1] isnull then true
-             else p.organization_id in (select o4.id
-                                        from md.organization o4
-                                        where o4.parent_organization_id in (select o5.id
-                                                                            from md.organization o5
-                                                                            where o5.level_id = 2
-                                                                              and o5.parent_organization_id = 1095
-                                                                              and o5.id in (select unnest(p_uszn_ids)) /*PARAM УСЗН куратор ТЦСО, координирующих группы*/
-                                        ))
-               or o3.id in (select o4.id
-                             from md.organization o4
-                             where o4.parent_organization_id in (select o5.id
-                                                                 from md.organization o5
-                                                                 where o5.level_id = 2
-                                                                   and o5.parent_organization_id = 1095
-                                                                   and o5.id in (select unnest(p_uszn_ids)) /*PARAM УСЗН куратор ТЦСО, координирующих группы*/
-                             ))
+             else g.territory_centre_id in (select u.u from unnest(uszn_arr)u)/**/
       end)
       and (case
              when p_provider_ids[1] isnull then true
