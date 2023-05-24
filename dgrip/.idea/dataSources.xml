@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="MosDolg_194" group="MosDolg" uuid="a4d5cf64-3e7b-40c4-9b0b-25ee4c4e7c1f">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/longevity</jdbc-url>
+      <vm-options>-Xmx4096m</vm-options>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_228" group="MosDolg" uuid="87708415-cf9a-4462-ba1b-c3b4ef26e468">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/longevity</jdbc-url>
+      <vm-options>-Xmx4096m</vm-options>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_prod" group="MosDolg" uuid="3a5a56ac-4b46-41f9-a3d4-0355490d98bc">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.24.63.137:5432/longevity</jdbc-url>
+      <vm-options>-Xmx8192m</vm-options>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_177" group="MosDolg" uuid="d620fcf3-9b8b-46f6-b329-c163002a198c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.24.63.177:5432/longevity_for_reports</jdbc-url>
+      <vm-options>-Xmx4096m</vm-options>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_212" group="MosDolg" uuid="67f24cdc-1b9b-40c6-b7d0-7814ff8fae80">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.24.63.212:5432/longevity</jdbc-url>
+      <vm-options>-Xmx4096m</vm-options>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_preprod" group="MosDolg" uuid="5d355c3f-fef7-475b-977d-4112442c1c8c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.24.63.190:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_preprod_replica" group="MosDolg" uuid="a7929480-e48c-4bfc-88a5-e9918d118f68">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.24.63.210:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_prod_test" group="MosDolg" uuid="4ec72144-3a84-471b-88d4-7f717558fea1">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5427/longevity</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_IDM_test" group="MosDolg" uuid="b7644967-d90c-4e2b-b750-e0e8666eb870">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5425/idm_prod</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_64" group="MosDolg" uuid="2c6ffa02-2f88-4979-86bf-8cde15055037">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/longevity</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_77" group="MosDolg" uuid="110471fe-52c6-4da0-a739-ab32a878aec2">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/postgres</jdbc-url>
+      <vm-options>-Xmx4096m</vm-options>
+    </data-source>
+    <data-source source="LOCAL" name="ENT.FTC" group="MyProject" uuid="7f898767-65ea-433e-89df-2ea2a2ef60cb">
+      <driver-ref>oracle</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@192.168.1.101:1521:pkn</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="RGSTAT" group="MyProject" uuid="7b5cd4ec-8907-4921-83be-53bd54daf7cb">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5418/postgres</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="ClearOs" group="MyProject" uuid="b57dcdbe-9088-4ae7-8792-6fcded00b131">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5429/postgres</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="WEB_DEB" group="MyProject" uuid="91d8977d-d532-440f-af91-e37cdfabbb2a">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/web_receivables</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="OGK.FTC" group="MyProject" uuid="b072ea8b-c820-4023-9c5f-c725151a91d9">
+      <driver-ref>oracle</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@95.129.150.146:60010:pkn</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="JLT.FTC" group="MyProject" uuid="4b87bc25-1e39-4005-8aa2-e513946d8861">
+      <driver-ref>oracle</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@95.129.150.146:60011:pkn</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_193" group="MosDolg" uuid="51bbbdbd-27e5-4d4c-9fb8-361c836b7870">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/longevity</jdbc-url>
+      <vm-options>-Xmx4096m</vm-options>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_DEV4" group="MosDolg" uuid="35c6eb4b-cc87-41cd-ade4-68967ab48f71">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.29.10.104:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_DEV3" group="MosDolg" uuid="0cb8cdc3-4c10-4d0a-86b4-08061a6d4e08">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.29.10.103:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_DEV5" group="MosDolg" uuid="ee7af094-939d-4187-93ee-925195d75197">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.29.10.105:5432/postgres</jdbc-url>
+      <vm-options>-Xmx8192m</vm-options>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_DEV2" group="MosDolg" uuid="df76b365-4503-48c5-8972-4ff200faa43a">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.29.10.102:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_DEV6" group="MosDolg" uuid="366d3508-ae8d-4af6-b9f4-321e2e95437c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.29.10.124:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_IDM" group="MosDolg" uuid="d155af2e-71a7-47fd-a23e-d6eacac77264">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.24.63.145:5432/postgres</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="MosDolg_DEV7" group="MosDolg" uuid="af73bbf8-847a-45ed-af21-fc9aa91e676d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://172.29.10.125:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="nc_prod" read-only="true" group="RTK" uuid="1c95648d-8993-48df-b120-39264e29c3ad">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/itv_api_ng</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="msk_apidb02_replica" read-only="true" group="RTK" uuid="ea28a709-b4b2-4cc7-a46c-eb62aad2a6e1">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/itv_api_ng</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="msk_apidb03_replica" read-only="true" group="RTK" uuid="17914c0b-260c-49de-a20e-1edd3d87d782">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/itv_api_ng</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="ts" read-only="true" group="RTK" uuid="6963ff56-e0dd-43ba-9c76-5549c6d18189">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:15432/gthr_storage</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="cnt_apidb03_replica" read-only="true" group="RTK" uuid="e42da5f5-3d65-420d-9ecc-5db074b9724e">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/itv_api_ng</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="cnt_apidb01_replica" read-only="true" group="RTK" uuid="53615133-9675-462b-999f-329c80d67fa9">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/itv_api_ng</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="rdm_prod" read-only="true" group="RTK" uuid="93b05ad2-ec90-4e86-9ee8-9785784f2dbd">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/itv_api_ng</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="nc_pre_prod" read-only="true" group="RTK" uuid="94451e5e-2491-47f9-ba87-684884b8a9de">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/itv_api_ng</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

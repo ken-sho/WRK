@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="192.168.196.104" id="e6978dfd-8f48-4043-b9e5-07707ed7f3e9" keyPath="$USER_HOME$/.ssh/id_rsa_rtk" port="22" customName="dpakhalchuk@192.168.196.104:22" nameFormat="CUSTOM" username="dpakhalchuk" useOpenSSHConfig="true">
+        <option name="customName" value="dpakhalchuk@192.168.196.104:22" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>
